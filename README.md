@@ -19,6 +19,7 @@ Key Features:
 ## Building:
 
 `snapzap` requires libzfs and libspl (typically included with zfs-utils). Use `make` to use the included Makefile to build with `cmake` and `make install` with elevated privileges to install. If `cmake` isn't installed, it can be compiled with `make snapzap` instead.
+Other Makefile targets include `clean`, `check` (using cppcheck), and `tidy` (using clang-format and clang-tidy).
 
 ## Examples:
 
