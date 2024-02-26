@@ -1,0 +1,11 @@
+---
+# https://clang.llvm.org/docs/ClangFormatStyleOptions.html
+IndentWidth: 4
+UseTab: Never
+
+---
+Language: Cpp
+#BreakAfterReturnType: TopLevel
+AlwaysBreakAfterReturnType: All
+BreakBeforeBraces: Allman
+IncludeBlocks: Regroup

@@ -1,0 +1,15 @@
+#
+# zfs-daily-snapshot.timer
+#
+
+[Unit]
+Description=ZFS Daily Snapshot Timer
+
+[Timer]
+OnCalendar=daily
+AccuracySec=1h
+Persistent=true
+Unit=zfs-daily-snapshot.service
+
+[Install]
+WantedBy=multi-user.target

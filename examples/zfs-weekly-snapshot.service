@@ -1,0 +1,16 @@
+#
+# zfs-weekly-snapshot.service
+#
+
+[Unit]
+Description=Weekly recursive ZFS snapshot
+Requires=zfs.target
+
+[Service]
+Type=oneshot
+Environment=CUSTOM_PROP="weekly_snap:uuid=0af6dc9c-83ef-46d6-934f-61d44b231e41"
+Environment=ZPOOL_NAME=Data
+Environment=PRUNE="today -10 weeks"
+
+ExecStart=/bin/bash -c '/usr/bin/zfs snapshot -o $CUSTOM_PROP -r $ZPOOL_NAME@auto-weekly-$(date +%%Y-%%m-%%d-%%H%%M)'
+ExecStartPost=/bin/bash -c '/usr/local/bin/snapzap $ZPOOL_NAME --before $(date -d "$PRUNE" +%%s) --filter $CUSTOM_PROP --delete --recursive'
