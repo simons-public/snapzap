@@ -21,6 +21,8 @@ Key Features:
 `snapzap` requires libzfs and libspl (typically included with zfs-utils). Use `make` to use the included Makefile to build with `cmake` and `make install` with elevated privileges to install. If `cmake` isn't installed, it can be compiled with `make snapzap` instead.
 Other Makefile targets include `clean`, `check` (using cppcheck), and `tidy` (using clang-format and clang-tidy).
 
+Currently builds with OpenZFS 2.2.2 on Linux, work is being done to port it to FreeBSD. 
+
 ## Examples:
 
 Example systemd scripts are included in the examples directory for daily and weekly systemd timers and services.
