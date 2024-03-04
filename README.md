@@ -1,9 +1,5 @@
 # snapzap
 
-```diff
-- snapzap is beta software
-```
-
 `snapzap` is a command-line utility for listing and pruning ZFS snapshots with ease and efficiency. Unlike traditional methods that rely on calling external `zfs` and `zpool` commands, snapzap leverages the libzfs library directly.
 
 I built this because I didn't feel comfortable with the fact that the `zfs destroy` command has no way of filtering zfs types for destruction. This makes scripting a bit dangerous, with so many possible footguns that could cause the wrong arguments to get passed to the command and result in data loss.
@@ -26,3 +22,20 @@ Currently builds with OpenZFS 2.2.2 on Linux, work is being done to port it to F
 ## Examples:
 
 Example systemd scripts are included in the examples directory for daily and weekly systemd timers and services.
+
+## Usage
+```
+Usage: snapzap <dataset> [options]
+Options:
+  --filter=<property=value>    Filter by ZFS property
+  --before=<epoch timestamp>   Filter snapshots created before the timestamp
+  --after=<epoch timestamp>    Filter snapshots created after the timestamp
+  --delete                     Delete matching snapshots
+Subshells with the `date` command can be used for epoch timestamps:
+	--after=$(date -d 'jan 1 2024' +%s)
+	--before=$(date -d 'today -30 days' +%s)
+```
+
+`snapzap tank --before $(date -d "today -20 days" +%%s) --filter custom:property=custom_value --delete --recursive`
+`snapzap tank --filter guid=18201047423112093010 --delete`
+`snapzap tank/dataset --before $(date -d "jan 1 2024" +%s)`
