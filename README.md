@@ -37,5 +37,7 @@ Subshells with the `date` command can be used for epoch timestamps:
 ```
 
 `snapzap tank --before $(date -d "today -20 days" +%%s) --filter custom:property=custom_value --delete --recursive`
+
 `snapzap tank --filter guid=18201047423112093010 --delete`
+
 `snapzap tank/dataset --before $(date -d "jan 1 2024" +%s)`
