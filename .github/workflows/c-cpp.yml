@@ -15,8 +15,6 @@ jobs:
     - uses: actions/checkout@v4
     - name: install dependencies
       run: sudo apt install zfsutils-linux build-essential cmake
-    - name: configure
-      run: ./configure
     - name: make
       run: make
     - name: make install
