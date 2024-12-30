@@ -1,0 +1,23 @@
+name: C/C++ CI
+
+on:
+  push:
+    branches: [ "**" ]
+  pull_request:
+    branches: [ "**" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: install dependencies
+      run: sudo apt install zfsutils-linux libzfslinux-dev build-essential cmake
+    - name: make
+      run: make
+    - name: make install
+      run: make install
+    - name: test run
+      run: /usr/local/bin/snapzap || true
