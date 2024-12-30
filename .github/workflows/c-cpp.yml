@@ -20,4 +20,4 @@ jobs:
     - name: make install
       run: make install
     - name: test run
-      run: /bin/snapzap || true
+      run: /usr/local/bin/snapzap || true
