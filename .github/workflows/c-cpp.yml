@@ -24,10 +24,10 @@ jobs:
       with:
         create-symlink: true
     
-    - name: make
+    - name: build snapzap
       run: make
     
-    - name: test install
+    - name: test snapzap install
       run: |
         make install
         /usr/local/bin/snapzap || true
@@ -37,4 +37,4 @@ jobs:
       run: |
         cp build/snapzap ./
         export TERM=xterm-256color
-        bats --jobs 5 --trace --verbose-run --pretty tests/
+        bats --jobs 5 --trace --verbose-run tests/
