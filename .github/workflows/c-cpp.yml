@@ -23,7 +23,9 @@ jobs:
         create-symlink: true
     
     - name: build snapzap
-      run: make
+      run: |
+        which gcc
+        make
     
     - name: test snapzap install
       run: |
