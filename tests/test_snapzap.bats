@@ -70,8 +70,9 @@ teardown() {
 
 @test "deletes snapshots with --delete" {
     sudo zfs snapshot testpool-${BATS_SUITE_TEST_NUMBER}/fs@deleteme
+    sudo zfs set snapzap:delete=yes testpool-${BATS_SUITE_TEST_NUMBER}/fs@deleteme
 
-    run ./snapzap testpool-${BATS_SUITE_TEST_NUMBER}/fs --delete --filter=name=deleteme
+    run ./snapzap testpool-${BATS_SUITE_TEST_NUMBER}/fs --delete --filter=snapzap:delete=yes
 
     [ "$status" -eq 0 ]
     ! sudo zfs list -t snapshot | grep -q "deleteme"
