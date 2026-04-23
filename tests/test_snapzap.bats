@@ -30,6 +30,7 @@ teardown() {
     sudo zfs snapshot testpool-${BATS_SUITE_TEST_NUMBER}/fs@old
     sleep 2
     NOW=$(date +%s)
+    sleep 2
     sudo zfs snapshot testpool-${BATS_SUITE_TEST_NUMBER}/fs@new
 
     run ./snapzap testpool-${BATS_SUITE_TEST_NUMBER}/fs --before="$NOW"
@@ -43,6 +44,7 @@ teardown() {
     sudo zfs snapshot testpool-${BATS_SUITE_TEST_NUMBER}/fs@old
     sleep 2
     NOW=$(date +%s)
+    sleep 2
     sudo zfs snapshot testpool-${BATS_SUITE_TEST_NUMBER}/fs@new
 
     run ./snapzap testpool-${BATS_SUITE_TEST_NUMBER}/fs --after="$NOW"
