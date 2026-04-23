@@ -14,7 +14,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: install dependencies
-      run: sudo apt install zfsutils-linux libzfslinux-dev build-essential cmake bats
+      run: sudo apt install -q zfsutils-linux libzfslinux-dev build-essential cmake bats
     - name: make
       run: make
     - name: make install
@@ -23,5 +23,6 @@ jobs:
       run: /usr/local/bin/snapzap || true
     - name: run tests
       run: |
+        find .
         cp build/snapzap ./
         bats tests/
