@@ -98,7 +98,7 @@ snapshot_iter_func(zfs_handle_t *zhp, void *data)
         {
             time_t created_time = zfs_prop_get_int(zhp, ZFS_PROP_CREATION);
             DEBUG_PRINT("Created at: %ld\n", created_time);
-            if (created_time >= atol(filter->value))
+            if (created_time > atol(filter->value))
             {
                 return 0; // Filter does not match
             }
@@ -109,7 +109,7 @@ snapshot_iter_func(zfs_handle_t *zhp, void *data)
         {
             time_t created_time = zfs_prop_get_int(zhp, ZFS_PROP_CREATION);
             DEBUG_PRINT("Created at: %ld\n", created_time);
-            if (created_time <= atol(filter->value))
+            if (created_time < atol(filter->value))
             {
                 return 0; // Filter does not match
             }

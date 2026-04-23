@@ -8,16 +8,29 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
+    
     - name: install dependencies
-      run: sudo apt install zfsutils-linux libzfslinux-dev build-essential cmake
-    - name: make
+      run: sudo apt install zfsutils-linux libzfslinux-dev build-essential cmake bats parallel ccache &>/dev/null
+
+    - name: ccache
+      uses: hendrikmuhs/ccache-action@v1.2
+      with:
+        create-symlink: true
+    
+    - name: build snapzap
       run: make
-    - name: make install
-      run: make install
-    - name: test run
-      run: /usr/local/bin/snapzap || true
+    
+    - name: test snapzap install
+      run: |
+        make install
+        /usr/local/bin/snapzap || true
+    
+    - name: run tests
+      run: |
+        cp build/snapzap ./
+        export TERM=xterm-256color
+        bats --jobs 5 --trace --verbose-run tests/
