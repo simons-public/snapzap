@@ -22,4 +22,6 @@ jobs:
     - name: test run
       run: /usr/local/bin/snapzap || true
     - name: run tests
-      run: bats tests/
+      run: |
+        cp build/snapzap ./
+        bats tests/
