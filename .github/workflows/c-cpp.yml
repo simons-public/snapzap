@@ -8,7 +8,6 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
@@ -23,9 +22,7 @@ jobs:
         create-symlink: true
     
     - name: build snapzap
-      run: |
-        which gcc
-        make
+      run: make
     
     - name: test snapzap install
       run: |
