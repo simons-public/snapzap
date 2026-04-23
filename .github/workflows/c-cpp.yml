@@ -28,6 +28,13 @@ jobs:
       run: |
         make install
         /usr/local/bin/snapzap || true
+
+    - name: upload artifact
+      if: github.ref == 'refs/heads/main'
+      uses: actions/upload-artifact@v7
+      with:
+        name: snapzap
+        path: build/snapzap
     
     - name: run tests
       run: |
