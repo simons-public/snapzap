@@ -72,7 +72,7 @@ teardown() {
     sudo zfs snapshot testpool-${BATS_SUITE_TEST_NUMBER}/fs@deleteme
     sudo zfs set snapzap:delete=yes testpool-${BATS_SUITE_TEST_NUMBER}/fs@deleteme
 
-    run ./snapzap testpool-${BATS_SUITE_TEST_NUMBER}/fs --delete --filter=snapzap:delete=yes
+    run sudo ./snapzap testpool-${BATS_SUITE_TEST_NUMBER}/fs --delete --filter=snapzap:delete=yes
 
     [ "$status" -eq 0 ]
     ! sudo zfs list -t snapshot | grep -q "deleteme"
@@ -83,7 +83,7 @@ teardown() {
     sudo zfs snapshot testpool-${BATS_SUITE_TEST_NUMBER}/fs@snap
     sudo zfs snapshot testpool-${BATS_SUITE_TEST_NUMBER}/fs/child@snap
 
-    run ./snapzap testpool-${BATS_SUITE_TEST_NUMBER}/fs --delete --recursive
+    run sudo ./snapzap testpool-${BATS_SUITE_TEST_NUMBER}/fs --delete --recursive
 
     [ "$status" -eq 0 ]
     ! sudo zfs list -t snapshot | grep -q "testpool-${BATS_SUITE_TEST_NUMBER}/fs@snap"
