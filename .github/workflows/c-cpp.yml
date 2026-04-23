@@ -24,4 +24,5 @@ jobs:
     - name: run tests
       run: |
         cp build/snapzap ./
-        bats bats --jobs 5 --trace --verbose-run --pretty tests/
+        export TERM=xterm-256color
+        bats --jobs 5 --trace --verbose-run --pretty tests/
