@@ -15,10 +15,7 @@ jobs:
     - uses: actions/checkout@v6
     
     - name: install dependencies
-      uses: tecolicom/actions-use-apt-tools@v1
-      with: 
-        tools: zfsutils-linux libzfslinux-dev build-essential cmake bats parallel ccache
-        method: timestamp
+      run: sudo apt install zfsutils-linux libzfslinux-dev build-essential cmake bats parallel ccache &>/dev/null
 
     - name: ccache
       uses: hendrikmuhs/ccache-action@v1.2
