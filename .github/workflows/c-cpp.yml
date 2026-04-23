@@ -17,7 +17,7 @@ jobs:
     - name: install dependencies
       uses: tecolicom/actions-use-apt-tools@v1
       with: 
-        tools: zfsutils-linux libzfslinux-dev build-essential cmake bats parallel ccache hiredis
+        tools: zfsutils-linux libzfslinux-dev build-essential cmake bats parallel ccache libhiredis1.1.0
 
     - name: ccache
       uses: hendrikmuhs/ccache-action@v1.2
