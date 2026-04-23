@@ -24,4 +24,4 @@ jobs:
     - name: run tests
       run: |
         cp build/snapzap ./
-        bats tests/
+        bats --verbose-run tests/
