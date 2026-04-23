@@ -28,7 +28,7 @@ teardown() {
 @test "filters snapshots with --before" {
     # Create snapshots with known timestamps
     sudo zfs snapshot testpool/fs@old
-    sleep 1
+    sleep 2
     NOW=$(date +%s)
     sudo zfs snapshot testpool/fs@new
 
@@ -41,7 +41,7 @@ teardown() {
 
 @test "filters snapshots with --after" {
     sudo zfs snapshot testpool/fs@old
-    sleep 1
+    sleep 2
     NOW=$(date +%s)
     sudo zfs snapshot testpool/fs@new
 
