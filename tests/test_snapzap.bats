@@ -18,9 +18,36 @@ teardown() {
     sudo zfs snapshot testpool/fs@snap1
     sudo zfs snapshot testpool/fs@snap2
 
-    run ./snaplist testpool/fs
+    run ./snapzap testpool/fs
 
     [ "$status" -eq 0 ]
     [[ "$output" == *"testpool/fs@snap1"* ]]
     [[ "$output" == *"testpool/fs@snap2"* ]]
+}
+
+@test "filters snapshots with --before" {
+    # Create snapshots with known timestamps
+    sudo zfs snapshot testpool/fs@old
+    sleep 1
+    NOW=$(date +%s)
+    sudo zfs snapshot testpool/fs@new
+
+    run ./snapzap testpool/fs --before="$NOW"
+
+    [ "$status" -eq 0 ]
+    [[ "$output" == *"testpool/fs@old"* ]]
+    [[ "$output" != *"testpool/fs@new"* ]]
+}
+
+@test "filters snapshots with --after" {
+    sudo zfs snapshot testpool/fs@old
+    sleep 2
+    NOW=$(date +%s)
+    sudo zfs snapshot testpool/fs@new
+
+    run ./snapzap testpool/fs --after="$NOW"
+
+    [ "$status" -eq 0 ]
+    [[ "$output" != *"testpool/fs@old"* ]]
+    [[ "$output" == *"testpool/fs@new"* ]]
 }
